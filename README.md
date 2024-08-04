@@ -6,3 +6,5 @@ To use the program, you would compile it (e.g., `gcc -o encrypter encrypter.c`) 
 #####  `./encrypter myfile.txt`
 
 You will then be prompted to enter an encryption key. The program will create a file named `myfile.txt-encrypted` with the encrypted content.
+
+To decrypt a file, pass it to the encrypter and input the correct XOR key.
