@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 int main(int argc, char *argv[])
@@ -11,7 +12,14 @@ int main(int argc, char *argv[])
   }
 
   FILE *fptr = fopen(argv[1], "r");
-  FILE *out = fopen("result.txt", "w");
+  size_t path_length = strlen(argv[1]);
+  size_t suffix_length = strlen("-encrypted");
+  size_t outname_length = path_length + suffix_length + 1;
+
+  char *outname = malloc(outname_length);
+  snprintf(outname, outname_length, "%s-encrypted", argv[1]);
+
+  FILE *out = fopen(outname, "w");
 
   if (!fptr)
   {
@@ -49,6 +57,7 @@ int main(int argc, char *argv[])
   }
 
   free(line);
+  free(outname);
   fclose(fptr);
   putchar('\n');
   return 0;
